@@ -1,5 +1,5 @@
 <template>
-    <div class="tablero">
+    <div>
       <Cuadrado v-for="(cuadrado, index) in cuadrados" :key="index" :valor="cuadrado" @click="marcarCuadrado(index)" />
     </div>
   </template>

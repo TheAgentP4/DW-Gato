@@ -1,7 +1,14 @@
-# Vue 3 + Vite
+# :video_game: Proyecto #01: Desarrollo Web con Vue y TailwindCSS
+## :school: Integrantes:
+@Teloxa777
+@TheAgentP4
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+## :clipboard: Descripción del proyecto:
+El proyecto consiste en desarrollar una aplicación web que permita a los usuarios jugar al clásico juego de Tic Tac Toe (Tres en Raya). El juego debe permitir jugar a dos jugadores, uno contra otro y poder elegir el símbolo que cada uno de ellos va a utilizar (X u O).
 
-## Recommended IDE Setup
+## :computer: Requisitos:
+  - Juego de Gato (Tic Tac Toe) para dos jugadores en el mismo dispositivo y contra la computadora (IA).
+  - El juego es responsivo y se adapta a cualquier dispositivo (PC, Tablet o Smartphone).
+  - Ver estados de desplazamiento para todos los elementos interactivos en la página, es decir, se muestran los estados de desplazamiento de los botones, los enlaces, los campos de texto, etc.
+  - Ser accesible para todos los usuarios, es decir, que se pueda navegar por la página usando el teclado, el mouse o la pantalla táctil.
 
-- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).

@@ -1,12 +1,15 @@
 import plugin from 'tailwindcss';
 
 /** @type {import('tailwindcss').Config} */
+const plugin = require('tailwindcss/plugin');
+
 export default {
   content: [
     "./index.html",
     "./src/**/*.{vue,js,ts,jsx,tsx}",
     "./src/**/*.vue"
-  ],  theme: {
+  ],  
+  theme: {
     colors: {
       'inherit': 'inherit',
       'white': {
@@ -32,22 +35,13 @@ export default {
     },
     extend: {
       fontFamily: {
-        custom: ['"Outfit"', 'sans-serif']
+        custom: ['Outfit', 'sans-serif']
       },
-
     },
   },
-  plugins: [
-    plugin(function({ addBase, theme}) {
-      addBase({
-        '#app': {
-          "@apply min-h-screen w-full px-10 py-3": {},
-          "@apply font-custom": {},
-          "@apply bg-colors-white-blue text-colors-black-blue": {},
-
-        }
-      })
-    })
-  ],
+  variants: {
+    extend: {},
+  },
+  plugins: [],
 }
 
