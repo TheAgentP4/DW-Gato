@@ -1,13 +1,55 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + Vue</title>
-  </head>
-  <body>
-    <div id="app"></div>
-    <script type="module" src="/src/main.js"></script>
-  </body>
+<!--
+  Desarrollo Web con Vue y Tailwind CSS - Proyecto #01: Juego de Gato (Tic Tac Toe)
+  Autor: @Teloxa777 y @TheAgentP4
+  Fecha: 2023-09-29
+
+  Características principales de la aplicación:
+  - Juego de Gato (Tic Tac Toe) para dos jugadores en el mismo dispositivo y contra la computadora (IA).
+  - El juego es responsivo y se adapta a cualquier dispositivo (PC, Tablet o Smartphone).
+  - Ver estados de desplazamiento para todos los elementos interactivos en la página, es decir, se muestran los estados de desplazamiento de los botones, los enlaces, los campos de texto, etc.
+  - Ser accesible para todos los usuarios, es decir, que se pueda navegar por la página usando el teclado, el mouse o la pantalla táctil.
+
+-->
+
+<!DOCTYPE html>
+<html lang="es" class="h-full">
+
+<head>
+  <!-- Meta -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta content="Juego de Gato (Tic Tac Toe) con dos modos de juego: contra otro jugador o contra la computadora (IA)." name="description">
+  <meta content="Juego de Gato (Tic Tac Toe)" name="keywords">
+  <meta content="TheAgentP4 y Teloxa777" name="author">
+  <meta content="index, follow" name="robots">
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="./src/assets/logo.svg" type="image/x-icon">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100;300;500;700&display=swap" rel="stylesheet"><!-- Font -->
+
+  <!-- Vue.js -->
+  <script src="js/vue.min.js"></script>
+
+  <!-- Axios -->
+  <script src="js/axios.min.js"></script>
+
+  <!-- jQuery -->
+  <script src="js/jquery-3.4.1.min.js"></script>
+
+  <!-- JavaScript -->
+  <script src="js/app.js"></script>
+
+  <!-- CSS -->
+  <link href="css/app.css" rel="stylesheet">
+
+  <title>Tic Tac Toe - Juego de Gato</title>
+</head>
+
+<body>
+  <div id="app"></div>
+  <script type="module" src="js/main.js"></script>
+</body>
+
 </html>
