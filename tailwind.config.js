@@ -38,7 +38,6 @@ export default {
     },
   },
   plugins: [
-    require('@tailwindcss/forms'),
     plugin(function({ addBase, theme}) {
       addBase({
         '#app': {
