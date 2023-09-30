@@ -31,7 +31,7 @@ export default {
         'DEFAULT': '#FFD700',
         'light': '#FFC860',
         'dark': '#F2B137',
-      },      
+      },
     },
     extend: {
       fontFamily: {
