@@ -3,7 +3,7 @@ import Inicio from '@/Inicio.vue'
 import Game from '@/components/Game.vue'
 import { ref } from 'vue'
 
-const modoJuego = ref({mark: true, mode: true})
+const modoJuego = ref({mark: null, mode: null})
 
 </script>
 
