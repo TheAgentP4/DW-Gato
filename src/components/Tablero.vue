@@ -1,55 +1,27 @@
-<template>
-    <div>
-      <Cuadrado v-for="(cuadrado, index) in cuadrados" :key="index" :valor="cuadrado" @click="marcarCuadrado(index)" />
-    </div>
-  </template>
-  
-  <script>
-  import Cuadrado from './Cuadrado.vue';
-  
-  export default {
-    components: {
-      Cuadrado
-    },
-    data() {
-      return {
-        cuadrados: Array(9).fill(null)
-      };
-    },
-    methods: {
-      marcarCuadrado(index) {
-        const cuadrados = [...this.cuadrados];
-        cuadrados[index] = 'X';
-        this.cuadrados = cuadrados;
-      }
+<script setup>
+import { ref } from 'vue'
+import Cuadrado from '@/components/Cuadrado.vue'
+
+const cuadrados = ref(Array(9).fill(null))
+
+const marcarCuadrado = (index) => {
+    const cuadrados = [...cuadrados.value]
+    if (resultado.value || cuadrados[index]) return
+    cuadrados[index] = turno.value
+    turno.value = turno.value === 'X' ? 'O' : 'X'
+    cuadrados.value = cuadrados
+    const ganador = calcularGanador(cuadrados.value)
+    if (ganador) {
+        resultado.value = `${ganador} wins!`
+        puntaje.value[ganador]++
+    } else if (!cuadrados.value.includes(null)) {
+        resultado.value = 'Tie!'
     }
-  };
-  </script>
-  
-  <style scoped>
-  .tablero {
-    display: flex;
-    flex-wrap: wrap;
-    width: 300px;
-    height: 300px;
-    border: 1px solid black;
-  }
-  
-  .tablero::after {
-    content: '';
-    flex: 0 0 33.33%;
-    height: 0;
-    padding-bottom: 33.33%;
-  }
-  
-  .tablero .cuadrado {
-    flex: 0 0 33.33%;
-    height: 33.33%;
-    border: 1px solid black;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 24px;
-    cursor: pointer;
-  }
-  </style>
+}
+</script>
+
+<template>
+    <main>
+      <Cuadrado v-for="(cuadrado, index) in cuadrados" :key="index" :value="cuadrado" @click="() => marcarCuadrado(index)" />
+    </main>
+</template>

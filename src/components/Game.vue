@@ -1,20 +1,19 @@
 <template>
     <div>
-        <Tablero :cuadrados="cuadrados" @marcar-cuadrado="marcarCuadrado" />
         <Marcador :puntaje="puntaje" :turno="turno" />
-        <Resultado v-if="resultado" :resultado="resultado" @reiniciar-juego="reiniciarJuego" />
-        
+        <Tablero :cuadrados="cuadrados" @click="marcarCuadrado" />
+        <Resultado :resultado="resultado" @click="reiniciarJuego" />
     </div>
   </template>
   
-  <script>
-
-    import Tablero from './Tablero.vue';
-    import Marcador from './Marcador.vue';
-    import Resultado from './Resultado.vue';
-    import { ref, defineProps } from 'vue'
+  <script setup>
+    import Tablero from '@/components/Tablero.vue';
+    import Marcador from '@/components/Marcador.vue';
+    import Resultado from '@/components/Resultado.vue';
+    import { ref } from 'vue'
   
   defineProps(['modoJuego'])
+
     const cuadrados = ref(Array(9).fill(null))
     const turno = ref('X')
     const puntaje = ref({ X: 0, O: 0 })

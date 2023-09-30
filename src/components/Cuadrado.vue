@@ -1,31 +1,17 @@
+<script setup>
+import { ref, toRefs } from 'vue'
+
+const modoJuego = toRefs('modoJuego')
+
+defineProps(['value'])
+
+
+</script>
 <template>
-    <div class="cuadrado" @click="marcarCuadrado">
-      {{ valor }}
-    </div>
-  </template>
+  <span class="w-1/2 justify-center items-center flex hover:bg-gray-200" @click="handleClick">
+    <img v-if="value === false" class="w-1/2" src="@/assets/icon-o.svg" alt="O Icon" />
+    <img v-else-if="value === true" class="w-1/2" src="@/assets/icon-x.svg" alt="X Icon" />
+
+  </span>
   
-  <script>
-  export default {
-    props: {
-      valor: String
-    },
-    methods: {
-      marcarCuadrado() {
-        this.$emit('click');
-      }
-    }
-  };
-  </script>
-  
-  <style scoped>
-  .cuadrado {
-    width: 50px;
-    height: 50px;
-    border: 1px solid black;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 24px;
-    cursor: pointer;
-  }
-  </style>
+</template>

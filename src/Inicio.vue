@@ -5,11 +5,11 @@
 
         <div class="flex justify-center bg-black-blue rounded-lg p-2 m-4">
 
-            <button class="bg-white-ice rounded-lg p-3 px-7 m-1 hover:bg-black-blue transition-all duration-500 ease-in-out" @click="setMark('X')">
+            <button class="bg-white-ice rounded-lg p-3 px-7 m-1 hover:bg-black-blue transition-all duration-500 ease-in-out" @click="setMark(true)">
                 <img class="w-8 transition-all duration-500 ease-in-out transform hover:scale-110" src="@/assets/icon-x.svg" alt="X Icon" />
             </button>
 
-            <button class="bg-inherit rounded-lg p-3 px-7 m-1 hover:bg-white-ice transition-all duration-500 ease-in-out" @click="setPlayer('O')">
+            <button class="bg-inherit rounded-lg p-3 px-7 m-1 hover:bg-white-ice transition-all duration-500 ease-in-out" @click="setMark(false)">
                 <img class="w-8 transition-all duration-500 ease-in-out transform hover:scale-110" src="@/assets/icon-o.svg" alt="O Icon" />
             </button>
         </div>
@@ -18,31 +18,24 @@
     </section>
 
     <section class="text-black w-full p-6">
-        <button class="bg-yellow-dark rounded-lg text-xl font-bold w-full p-2 mb-2
-        
-                " @click="setMode(true)">Vs. CPU</button>
-        <button class="bg-blue-dark rounded-lg text-xl font-bold w-full p-2 mt-2
-        " @click="setMode(false)">Vs. Player</button>
-        <Game v-if="modoJuego.mode && modoJuego.player" :modoJuego="modoJuego" />
+        <button class="bg-yellow-dark rounded-lg text-xl font-bold w-full p-2 mb-2 hover:bg-yellow-light transition-all duration-500 ease-in-out" @click="setMode(true)">Vs. CPU</button>
+        <button class="bg-blue-dark rounded-lg text-xl font-bold w-full p-2 mt-2 hover:bg-blue-light transition-all duration-500 ease-in-out" @click="setMode(false)">Vs. Jugador</button>
     </section>
 </template>
 
 <script setup> 
-import { ref } from 'vue'
 
-const modoJuego = ref({mode: null, player: null})
+import { ref, toRefs } from 'vue'
 
+defineProps(['modoJuego'])
+
+const modoJuego = toRefs(ref('modoJuego'))
+
+
+const setMark = (mark) => {
+    modoJuego.mark = mark
+}
 const setMode = (mode) => {
     modoJuego.mode = mode
-}
-
-const setPlayer = (player) => {
-    modoJuego.player = player
-}
-
-const iniciarJuego = () => {
-    if (modoJuego.mode && modoJuego.player) {
-        console.log(modoJuego)
-    }
 }
 </script>
