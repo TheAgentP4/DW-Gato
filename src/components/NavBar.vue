@@ -1,7 +1,9 @@
 <script setup>
 import { ref } from 'vue'
 
-const modoJuego = ref({mark: null, mode: null})
+import { defineProps } from 'vue';
+const props = defineProps(['modoJuego']);
+
 
 </script>
 

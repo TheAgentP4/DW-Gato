@@ -24,18 +24,17 @@
 </template>
 
 <script setup> 
+import { defineEmits } from 'vue'
 
-import { ref, toRefs } from 'vue'
+const emit = defineEmits()
 
-defineProps(['modoJuego'])
-
-const modoJuego = toRefs(ref('modoJuego'))
-
+const props = defineProps(['modoJuego']);
 
 const setMark = (mark) => {
-    modoJuego.mark = mark
+  emit('update:mark', mark)
 }
+
 const setMode = (mode) => {
-    modoJuego.mode = mode
+  emit('update:mode', mode)
 }
 </script>
