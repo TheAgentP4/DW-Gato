@@ -17,9 +17,9 @@
         <p class="text-center text-sm font-bold text-white-ice">NOTA: La X siempre empieza primero</p>
     </section>
 
-    <section class="text-black w-full p-6">
-        <button class="bg-yellow-dark rounded-lg text-xl font-bold w-full p-2 mb-2 hover:bg-yellow-light transition-all duration-500 ease-in-out" @click="setMode(true)">Vs. CPU</button>
-        <button class="bg-blue-dark rounded-lg text-xl font-bold w-full p-2 mt-2 hover:bg-blue-light transition-all duration-500 ease-in-out" @click="setMode(false)">Vs. Jugador</button>
+    <section class="flex flex-col justify-center items-center text-black-ice p-3 rounded-lg shadow-lg m-3">
+        <button class="bg-yellow-dark rounded-lg text-xl font-bold w-full p-2 mb-2 hover:bg-yellow-light transition-all duration-500 ease-in-out" @click="setMode(false)">Vs. CPU</button>
+        <button class="bg-blue-dark rounded-lg text-xl font-bold w-full p-2 mt-2 hover:bg-blue-light transition-all duration-500 ease-in-out" @click="setMode(true)">Vs. Jugador</button>
     </section>
 </template>
 
