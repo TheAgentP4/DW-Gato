@@ -1,5 +1,5 @@
 <template>
-    <section class="flex flex-row justify-between items-center w-full h-auto items-center px-6">
+    <section class="flex flex-row justify-between w-full h-auto items-center px-6">
         <span class="flex flex-col justify-center items-center bg-blue-dark rounded-lg p-1 m-1 w-1/3">
           <p class="text-black-blue font-bold text-md">X {{ jugadorX }}</p>
           <p class="text-black-blue font-bold text-xl">{{ ganadosX }}</p>
@@ -17,13 +17,19 @@
 
 <script setup>
 
-import { ref } from 'vue';
+import { computed, defineProps, ref } from 'vue';
 
-const jugadorX = ref(''); // o el valor inicial que desees
-const ganadosX = ref(0); // o el valor inicial que desees
-const empates = ref(0); // o el valor inicial que desees
-const jugadorO = ref(''); // o el valor inicial que desees
-const ganadosO = ref(0); // o el valor inicial que desees
+const props = defineProps({
+  puntaje: Object
+});
 
+// Definir jugadorX y jugadorO como refs con valores iniciales
+const jugadorX = ref('Jugador X');
+const jugadorO = ref('Jugador O');
+
+// Usar computed para asegurar que los valores se actualicen automáticamente
+const ganadosX = computed(() => props.puntaje.X);
+const ganadosO = computed(() => props.puntaje.O);
+const empates = computed(() => props.puntaje['-']);
 </script>
 

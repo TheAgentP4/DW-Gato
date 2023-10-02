@@ -1,5 +1,6 @@
 <template>
-  <span class="fixed flex top-0 left-0 w-full h-full bg-black bg-opacity-70 justify-center items-center" v-if="ganador !== null">
+  <div v-if="ganador !== null">
+    <span class="fixed flex top-0 left-0 w-full h-full bg-black bg-opacity-70 justify-center items-center" v-if="ganador !== null">
     <span class="flex flex-col justify-center items-center bg-black-ice p-3 shadow-lg h-1/4 w-full">
       <div class="flex flex-col justify-center items-center h-full w-[300px] m-2">
         <p class="text-sm font-bold text-white-ice">{{ fraseGanador }}</p>
@@ -16,7 +17,10 @@
       </div>
     </span>
   </span>
+
+  </div>
 </template>
+
 
 <script setup>
 import { defineProps, computed, watch } from 'vue';
