@@ -24,12 +24,12 @@ const props = defineProps({
 });
 
 // Definir jugadorX y jugadorO como refs con valores iniciales
-const jugadorX = ref('Jugador X');
-const jugadorO = ref('Jugador O');
+const jugadorX = ref('Jugador');
+const jugadorO = ref('Jugador');
 
 // Usar computed para asegurar que los valores se actualicen automáticamente
 const ganadosX = computed(() => props.puntaje.X);
 const ganadosO = computed(() => props.puntaje.O);
-const empates = computed(() => props.puntaje['-']);
+const empates = computed(() => props.puntaje.empate);
 </script>
 

@@ -11,8 +11,9 @@
           <h2 class="text-2xl font-bold text-white-ice" v-else-if="ganador === '-'">EMPATE</h2>
         </span>
         <span class="flex flex-row justify-center items-center w-full h-full">
-          <button class="flex flex-col justify-center items-center bg-white-ice rounded-lg p-1 m-1 w-1/3 text-black font-bold hover:bg-white transition-all duration-500 ease-in-out" @click="$emit('reiniciar-juego')">SALIR</button>
-          <button class="flex flex-col justify-center items-center bg-yellow-dark rounded-lg p-1 m-1 w-1/3  text-black  font-bold hover:bg-yellow-light " @click="$emit('inicio')">REINICIAR</button>
+          <button class="flex flex-col justify-center items-center bg-white-ice rounded-lg p-1 m-1 w-1/3 text-black font-bold hover:bg-white transition-all duration-500 ease-in-out" @click="$
+          ">SALIR</button>
+          <button class="flex flex-col justify-center items-center bg-yellow-dark rounded-lg p-1 m-1 w-1/3  text-black  font-bold hover:bg-yellow-light " @click="$emit('reiniciar-juego')">REINICIAR</button>
         </span>
       </div>
     </span>
@@ -23,8 +24,9 @@
 
 
 <script setup>
-import { defineProps, computed, watch } from 'vue';
+import { defineProps, computed, watch, defineEmits } from 'vue'
 
+const emit = defineEmits()
 
 const { ganador } = defineProps(['ganador'])
 watch(() => ganador.value, (newVal) => {
@@ -35,7 +37,7 @@ const fraseGanador = computed(() => {
   if (ganador.value === 'X' || ganador.value === 'O') {
     return `Jugador ${ganador.value} Gana la Partida`
   } else if (ganador.value === '-') {
-    return 'Empate'
+    return ''
   }
 })
 </script>

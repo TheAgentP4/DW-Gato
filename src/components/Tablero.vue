@@ -5,7 +5,8 @@
         v-for="(cuadrado, index) in cuadrados" 
         :key="index" 
         :value="cuadrado" 
-        @click="marcarCuadrado(index)" />
+        @click="marcarCuadrado(index)" 
+        />
     </main>
   </template>
   
@@ -17,7 +18,7 @@ const { cuadrados } = defineProps(['cuadrados'])
 const emit = defineEmits()
 
 const marcarCuadrado = (index) => {
-  console.log('Evento de clic recibido en Tablero'); // Agrega esta línea
+  console.log('Evento de clic recibido en Tablero');
   emit('marcar-cuadrado', index);
 }
 

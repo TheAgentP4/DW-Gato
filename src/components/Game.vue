@@ -3,12 +3,11 @@
   <div>
     <NavBar @reiniciar-juego="reiniciarJuego" :turno="turno" @inicio="inicio" />
     <Tablero :cuadrados="cuadrados" @marcar-cuadrado="marcarCuadrado" />
-    <Marcador :puntaje="puntaje" :key="puntaje.X + puntaje.O" />
+    <Marcador :puntaje="puntaje" :key="puntaje.X + puntaje.O + puntaje.empate" />
     <Resultado
       v-if="resultado !== null"
       :ganador="resultado"
-      @reiniciar-juego="manejarSalir"
-      @inicio="manejarReiniciar"
+      @reiniciar-juego="reiniciarJuego"
     />
   </div>
 </template>
@@ -25,7 +24,7 @@ const props = defineProps({
 });
 
 const cuadrados = ref(Array(9).fill(null));
-const puntaje = ref({ X: 0, O: 0 });
+const puntaje = ref({ X: 0, O: 0, empate: 0 });
 const turno = ref('X');
 const resultado = ref(null);
 
@@ -54,6 +53,9 @@ const marcarCuadrado = (index) => {
 const moverCPU = () => {
   let indiceAleatorio;
   do {
+    if (calcularGanador() !== null) {
+      return;
+    }
     indiceAleatorio = Math.floor(Math.random() * 9);
   } while (cuadrados.value[indiceAleatorio] !== null);
   marcarCuadrado(indiceAleatorio);
@@ -82,10 +84,6 @@ const calcularGanador = () => {
 
 const reiniciarJuego = () => {
   cuadrados.value = Array(9).fill(null);
-  resultado.value = null;
-};
-
-const manejarSalir = () => {
   resultado.value = null;
 };
 
