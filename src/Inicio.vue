@@ -18,13 +18,15 @@
     </section>
 
     <section class="flex flex-col justify-center items-center text-black-ice p-3 rounded-lg shadow-lg m-3">
-        <button class="bg-yellow-dark rounded-lg text-xl font-bold w-full p-2 mb-2 hover:bg-yellow-light transition-all duration-500 ease-in-out" @click="setMode(false)">Vs. CPU</button>
-        <button class="bg-blue-dark rounded-lg text-xl font-bold w-full p-2 mt-2 hover:bg-blue-light transition-all duration-500 ease-in-out" @click="setMode(true)">Vs. Jugador</button>
+
+        <button class="bg-yellow-dark rounded-lg text-xl font-bold w-full p-2 mb-2 hover:bg-yellow-light transition-all duration-500 ease-in-out" @click="setMode('cpu')">Vs. CPU</button>
+        <button class="bg-blue-dark rounded-lg text-xl font-bold w-full p-2 mt-2 hover:bg-blue-light transition-all duration-500 ease-in-out" @click="setMode('player')">Vs. Jugador</button>
+
     </section>
 </template>
 
 <script setup> 
-import { defineEmits } from 'vue'
+
 
 const emit = defineEmits()
 
@@ -37,4 +39,6 @@ const setMark = (mark) => {
 const setMode = (mode) => {
   emit('update:mode', mode)
 }
+
+
 </script>

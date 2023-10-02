@@ -1,32 +1,36 @@
 <!-- Game.vue -->
 <template>
-    <div>
-      <NavBar @reiniciar-juego="reiniciarJuego" :turno="turno" @inicio="inicio" />
+  <div>
+    <NavBar @reiniciar-juego="reiniciarJuego" :turno="turno" @inicio="inicio" />
+    <Tablero :cuadrados="cuadrados" @marcar-cuadrado="marcarCuadrado" />
+    <Marcador :puntaje="puntaje" :key="puntaje.X + puntaje.O" />
+    <Resultado
+      v-if="resultado !== null"
+      :ganador="resultado"
+      @reiniciar-juego="manejarSalir"
+      @inicio="manejarReiniciar"
+    />
+  </div>
+</template>
 
-      <Tablero :cuadrados="cuadrados" @marcar-cuadrado="marcarCuadrado" />
-      <Marcador :puntaje="puntaje" :turno="turno" />
-      <Resultado v-if="resultado !== null" :ganador="resultado" />
-    </div>
-  </template>
-  
-  <script setup>
-import { defineProps, ref, watch, computed, toRefs } from 'vue'
-const props = defineProps(['modoJuego'])
+<script setup>
+import { ref, watch, defineProps } from 'vue';
+import NavBar from '@/components/NavBar.vue';
+import Tablero from '@/components/Tablero.vue';
+import Marcador from '@/components/Marcador.vue';
+import Resultado from '@/components/Resultado.vue';
 
-  import NavBar from '@/components/NavBar.vue'
-  import Tablero from '@/components/Tablero.vue'
-  import Marcador from '@/components/Marcador.vue'
-  import Resultado from '@/components/Resultado.vue'
-  
-  const modoJuego = toRefs(props.modoJuego)
-  const cuadrados = ref(Array(9).fill(null))
-  const puntaje = ref({ X: 0, O: 0 })
-  const turno = ref('X')
-  const resultado = ref(null)
-  
-  watch(cuadrados, () => {
+const props = defineProps({
+  modoJuego: Object
+});
+
+const cuadrados = ref(Array(9).fill(null));
+const puntaje = ref({ X: 0, O: 0 });
+const turno = ref('X');
+const resultado = ref(null);
+
+watch(cuadrados, () => {
   const winner = calcularGanador();
-  console.log('Ganador:', winner); 
   if (winner) {
     resultado.value = winner;
     if (winner !== '-') {
@@ -35,50 +39,54 @@ const props = defineProps(['modoJuego'])
   }
 });
 
-
-  
 const marcarCuadrado = (index) => {
-  console.log('Evento marcar-cuadrado recibido en Game'); 
   if (!cuadrados.value[index]) {
-    cuadrados.value[index] = turno.value;
+    const nuevosCuadrados = [...cuadrados.value];
+    nuevosCuadrados[index] = turno.value;
+    cuadrados.value = nuevosCuadrados;
     turno.value = turno.value === 'X' ? 'O' : 'X';
+    if (props.modoJuego.mode === 'cpu' && turno.value === 'O') {
+      moverCPU();
+    }
   }
 };
 
+const moverCPU = () => {
+  let indiceAleatorio;
+  do {
+    indiceAleatorio = Math.floor(Math.random() * 9);
+  } while (cuadrados.value[indiceAleatorio] !== null);
+  marcarCuadrado(indiceAleatorio);
+};
 
-  
-  const calcularGanador = () => {
-    console.log('Verificando ganador...'); // Agrega esta línea
+const calcularGanador = () => {
   const lineasGanadoras = [
-    [0, 1, 2], [3, 4, 5], [6, 7, 8], // horizontales
-    [0, 3, 6], [1, 4, 7], [2, 5, 8], // verticales
-    [0, 4, 8], [2, 4, 6]              // diagonales
+    [0, 1, 2], [3, 4, 5], [6, 7, 8],
+    [0, 3, 6], [1, 4, 7], [2, 5, 8],
+    [0, 4, 8], [2, 4, 6]
   ];
 
   for (let i = 0; i < lineasGanadoras.length; i++) {
     const [a, b, c] = lineasGanadoras[i];
     if (cuadrados.value[a] && cuadrados.value[a] === cuadrados.value[b] && cuadrados.value[a] === cuadrados.value[c]) {
-      return cuadrados.value[a]; // retorna 'X' o 'O'
+      return cuadrados.value[a];
     }
   }
 
   if (cuadrados.value.every(cuadrado => cuadrado !== null)) {
-    return '-'; // retorna '-' para empate
+    return '-';
   }
 
-  return null; // retorna null si el juego aún no ha terminado
+  return null;
 };
 
-  
-  const reiniciarJuego = () => {
-    cuadrados.value = Array(9).fill(null)
-    resultado.value = null
-  }
+const reiniciarJuego = () => {
+  cuadrados.value = Array(9).fill(null);
+  resultado.value = null;
+};
 
-  const inicio = () => {
-    puntaje.value = { X: 0, O: 0 }
-    turno.value = props.modoJuego ? 'X' : 'O'
-    reiniciarJuego()
-  }
-  </script>
-  
+const manejarSalir = () => {
+  resultado.value = null;
+};
+
+</script>

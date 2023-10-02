@@ -1,6 +1,7 @@
 <script setup>
 import Inicio from '@/Inicio.vue'
 import Game from '@/components/Game.vue'
+
 import { ref } from 'vue'
 
 const modoJuego = ref({mark: null, mode: null})
@@ -16,4 +17,5 @@ const modoJuego = ref({mark: null, mode: null})
   <Game 
     v-else-if="modoJuego.mode != null && modoJuego.mark != null" 
     :modoJuego="modoJuego" />
+
 </template>
