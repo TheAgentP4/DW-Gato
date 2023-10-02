@@ -5,11 +5,6 @@ const emit = defineEmits()
 
 const { turno } = defineProps(['turno'])
 
-const handleClick = () => {
-  console.log('Evento de clic recibido en NavBar'); // Agrega esta línea
-  emit('turno');
-};
-
 </script>
 
 <template>

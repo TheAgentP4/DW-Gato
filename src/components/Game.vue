@@ -1,7 +1,7 @@
 <!-- Game.vue -->
 <template>
     <div>
-      <NavBar @reiniciar-juego="reiniciarJuego" :turno="turno" />
+      <NavBar @reiniciar-juego="reiniciarJuego" :turno="turno" @inicio="inicio" />
 
       <Tablero :cuadrados="cuadrados" @marcar-cuadrado="marcarCuadrado" />
       <Marcador :puntaje="puntaje" :turno="turno" />
@@ -10,16 +10,15 @@
   </template>
   
   <script setup>
-
-import { defineProps } from 'vue'
+import { defineProps, ref, watch, computed, toRefs } from 'vue'
 const props = defineProps(['modoJuego'])
-  import { ref, watch } from 'vue'
+
   import NavBar from '@/components/NavBar.vue'
   import Tablero from '@/components/Tablero.vue'
   import Marcador from '@/components/Marcador.vue'
   import Resultado from '@/components/Resultado.vue'
   
-  const modoJuego = ref({ mark: 'X', mode: 'player' })
+  const modoJuego = toRefs(props.modoJuego)
   const cuadrados = ref(Array(9).fill(null))
   const puntaje = ref({ X: 0, O: 0 })
   const turno = ref('X')
@@ -74,6 +73,12 @@ const marcarCuadrado = (index) => {
   const reiniciarJuego = () => {
     cuadrados.value = Array(9).fill(null)
     resultado.value = null
+  }
+
+  const inicio = () => {
+    puntaje.value = { X: 0, O: 0 }
+    turno.value = props.modoJuego ? 'X' : 'O'
+    reiniciarJuego()
   }
   </script>
   
