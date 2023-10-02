@@ -8,11 +8,10 @@
           <img src="@/assets/icon-x.svg" alt="icon-x" class="w-8 h-auto" v-if="ganador === 'X'">
           <img src="@/assets/icon-o.svg" alt="icon-o" class="w-8 h-auto" v-else-if="ganador === 'O'">
           <h2 class="text-2xl font-bold text-white-ice" v-if="ganador === 'X' || ganador === 'O'">GANADOR</h2>
-          <h2 class="text-2xl font-bold text-white-ice" v-else-if="ganador === '-'">EMPATE</h2>
+          <h2 class="text-2xl font-bold text-white-ice" v-else-if="ganador === 'empate'">EMPATE</h2>
         </span>
         <span class="flex flex-row justify-center items-center w-full h-full">
-          <button class="flex flex-col justify-center items-center bg-white-ice rounded-lg p-1 m-1 w-1/3 text-black font-bold hover:bg-white transition-all duration-500 ease-in-out" @click="$
-          ">SALIR</button>
+          <button class="flex flex-col justify-center items-center bg-white-ice rounded-lg p-1 m-1 w-1/3 text-black font-bold hover:bg-white transition-all duration-500 ease-in-out" @click="$emit('salir')">SALIR</button>
           <button class="flex flex-col justify-center items-center bg-yellow-dark rounded-lg p-1 m-1 w-1/3  text-black  font-bold hover:bg-yellow-light " @click="$emit('reiniciar-juego')">REINICIAR</button>
         </span>
       </div>
@@ -29,15 +28,18 @@ import { defineProps, computed, watch, defineEmits } from 'vue'
 const emit = defineEmits()
 
 const { ganador } = defineProps(['ganador'])
+
+const fraseGanador = computed(() => {
+  if (ganador.value === 'X') {
+    return '¡Felicidades!'
+  } else if (ganador.value === 'O') {
+    return '¡Suerte para la próxima!'
+  } else if (ganador.value === 'empate') {
+    return '¡Empate!'
+  }
+})
 watch(() => ganador.value, (newVal) => {
   console.log('Nuevo valor de ganador en Resultado:', newVal); // Agrega esta línea
 });
 
-const fraseGanador = computed(() => {
-  if (ganador.value === 'X' || ganador.value === 'O') {
-    return `Jugador ${ganador.value} Gana la Partida`
-  } else if (ganador.value === '-') {
-    return ''
-  }
-})
 </script>

@@ -31,11 +31,9 @@ const resultado = ref(null);
 watch(cuadrados, () => {
   const winner = calcularGanador();
   if (winner) {
-    resultado.value = winner;
-    if (winner !== '-') {
-      puntaje.value[winner]++;
-    }
-  }
+    resultado.value = winner;   
+    puntaje.value[winner]++;   
+  } 
 });
 
 const marcarCuadrado = (index) => {
@@ -74,9 +72,8 @@ const calcularGanador = () => {
       return cuadrados.value[a];
     }
   }
-
-  if (cuadrados.value.every(cuadrado => cuadrado !== null)) {
-    return '-';
+  if (!cuadrados.value.includes(null)) {
+    return 'empate';
   }
 
   return null;
