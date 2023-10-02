@@ -8,6 +8,7 @@
       v-if="resultado !== null"
       :ganador="resultado"
       @reiniciar-juego="reiniciarJuego"
+      @salir="manejarSalir"
     />
   </div>
 </template>
@@ -81,6 +82,10 @@ const calcularGanador = () => {
 
 const reiniciarJuego = () => {
   cuadrados.value = Array(9).fill(null);
+  resultado.value = null;
+};
+
+const manejarSalir = () => {
   resultado.value = null;
 };
 
