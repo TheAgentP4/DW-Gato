@@ -17,4 +17,13 @@
 
 <script setup>
 
+import { ref } from 'vue';
+
+const jugadorX = ref(''); // o el valor inicial que desees
+const ganadosX = ref(0); // o el valor inicial que desees
+const empates = ref(0); // o el valor inicial que desees
+const jugadorO = ref(''); // o el valor inicial que desees
+const ganadosO = ref(0); // o el valor inicial que desees
+
 </script>
+
