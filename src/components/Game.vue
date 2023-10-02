@@ -81,5 +81,11 @@ const marcarCuadrado = (index) => {
     turno.value = props.modoJuego ? 'X' : 'O'
     reiniciarJuego()
   }
+
+  const inicio = () => {
+    puntaje.value = { X: 0, O: 0 }
+    turno.value = props.modoJuego ? 'X' : 'O'
+    reiniciarJuego()
+  }
   </script>
   
