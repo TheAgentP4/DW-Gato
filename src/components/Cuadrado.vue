@@ -16,6 +16,7 @@ const emit = defineEmits()
 const { value } = defineProps(['value']);
 
 const handleClick = () => {
+  console.log('Evento de clic recibido en Cuadrado'); // Agrega esta línea
   emit('click');
 };
 

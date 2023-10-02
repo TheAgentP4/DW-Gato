@@ -1,7 +1,7 @@
 <!-- Game.vue -->
 <template>
     <div>
-      <NavBar :modoJuego="modoJuego" />
+      <NavBar @reiniciar-juego="reiniciarJuego" :turno="turno" />
 
       <Tablero :cuadrados="cuadrados" @marcar-cuadrado="marcarCuadrado" />
       <Marcador :puntaje="puntaje" :turno="turno" />
